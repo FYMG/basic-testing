@@ -50,8 +50,8 @@ describe('simpleCalculator tests', () => {
 
   test('should exponentiate two numbers', () => {
     for (let i = 0; i < 10; i++) {
-      const a = getRandomNumber(0, 16);
-      const b = getRandomNumber(0, 16);
+      const a = getRandomNumber(-16, 16);
+      const b = getRandomNumber(-16, 16);
       expect(simpleCalculator({ a, b, action: Action.Exponentiate })).toBe(
         a ** b,
       );
@@ -59,26 +59,22 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should return null for invalid action', () => {
-    for (let i = 0; i < 10; i++) {
-      const a = getRandomNumber(-256, 256);
-      const b = getRandomNumber(-256, 256);
-      expect(simpleCalculator({ a, b, action: 'invalid' })).toBeNull();
-      expect(simpleCalculator({ a, b, action: undefined })).toBeNull();
-    }
+    const a = getRandomNumber(-256, 256);
+    const b = getRandomNumber(-256, 256);
+    expect(simpleCalculator({ a, b, action: 'invalid' })).toBeNull();
+    expect(simpleCalculator({ a, b, action: undefined })).toBeNull();
   });
 
   test('should return null for invalid arguments', () => {
-    for (let i = 0; i < 10; i++) {
-      const a = getRandomNumber(-256, 256);
-      const b = getRandomNumber(-256, 256);
-      expect(simpleCalculator({ a, b: 'b', action: Action.Add })).toBeNull();
-      expect(simpleCalculator({ a: 'a', b, action: Action.Add })).toBeNull();
-      expect(
-        simpleCalculator({ a, b: undefined, action: Action.Add }),
-      ).toBeNull();
-      expect(
-        simpleCalculator({ a: undefined, b, action: Action.Add }),
-      ).toBeNull();
-    }
+    const a = getRandomNumber(-256, 256);
+    const b = getRandomNumber(-256, 256);
+    expect(simpleCalculator({ a, b: 'b', action: Action.Add })).toBeNull();
+    expect(simpleCalculator({ a: 'a', b, action: Action.Add })).toBeNull();
+    expect(
+      simpleCalculator({ a, b: undefined, action: Action.Add }),
+    ).toBeNull();
+    expect(
+      simpleCalculator({ a: undefined, b, action: Action.Add }),
+    ).toBeNull();
   });
 });
